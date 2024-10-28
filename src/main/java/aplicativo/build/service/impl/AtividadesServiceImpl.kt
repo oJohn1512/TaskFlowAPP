@@ -28,7 +28,7 @@ class AtividadesServiceImpl: AtividadesService {
     }
 
     override fun atualizarAtividade(descAtividade: AtualizarAtividadeDto): AtualizarAtividadeDto{
-        return mapper.updateMapper(descAtividade, dataInicio)
+
     }
 
     override fun deletarAtividade(descAtividade: DeletarAtividadeDto): DeletarAtividadeDto{

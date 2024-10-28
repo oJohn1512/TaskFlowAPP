@@ -6,7 +6,7 @@ import java.util.*
 
 data class AtualizarAtividadeDto (
     @Id
-    val id: UUID = UUID.randomUUID(),
+    val id: UUID,
     val descAtividade: String,
     val dataInicio: LocalDate)
 {

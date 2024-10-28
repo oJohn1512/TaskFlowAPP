@@ -16,7 +16,11 @@ class AtividadesMapperImpl: AtividadesMapper {
     }
 
     override fun toDtoUpdate(entity: Atividade): AtualizarAtividadeDto {
-        return AtualizarAtividadeDto(id = entity.id, descAtividade = entity.descAtividade, dataInicio = entity.dataInicio)
+        return AtualizarAtividadeDto(
+            id = entity.id,
+            descAtividade = entity.descAtividade,
+            dataInicio = entity.dataInicio
+        )
     }
 
     override fun toEntityUpdate(dto: AtualizarAtividadeDto): Atividade {
@@ -26,10 +30,10 @@ class AtividadesMapperImpl: AtividadesMapper {
     override fun toDtoDelete(entity: Atividade): DeletarAtividadeDto {
         return DeletarAtividadeDto(id = entity.id, descAtividade = entity.descAtividade)
     }
-
-    override fun toEntityDelete(dto: DeletarAtividadeDto): Atividade {
-        return Atividade(id = dto.id, descAtividade = dto.descAtividade, ) //CONSTRUIR SEGUNDO CONSTRUTOR NO ATIVVIDADE
-    }
-
-
 }
+
+//    override fun toEntityDelete(dto: DeletarAtividadeDto): Atividade {
+   //     return Atividade(id = dto.id, descAtividade = dto.descAtividade, ) //CONSTRUIR SEGUNDO CONSTRUTOR NO ATIVVIDADE
+    //}
+
+

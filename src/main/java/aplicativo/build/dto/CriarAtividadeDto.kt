@@ -8,7 +8,5 @@ data class CriarAtividadeDto (
     @Id
     val id: UUID = UUID.randomUUID(),
     val descAtividade: String,
-    val dataInicio: LocalDate)
-{
+    val dataInicio: LocalDate = LocalDate.now())
 
-}

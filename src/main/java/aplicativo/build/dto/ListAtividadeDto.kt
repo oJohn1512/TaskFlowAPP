@@ -5,8 +5,8 @@ import java.time.LocalDate
 import java.util.*
 
 data class ListAtividadeDto (
-    @Id
-    val id: UUID = UUID.randomUUID(),
+
+    val id: UUID ,
     val descAtividade: String,
     val dataInicio: LocalDate)
 {

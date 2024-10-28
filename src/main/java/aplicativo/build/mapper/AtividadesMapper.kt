@@ -20,12 +20,7 @@ interface AtividadesMapper {
     fun toEntityUpdate(dto: AtualizarAtividadeDto):Atividade
 
     fun toDtoDelete(entity: Atividade):DeletarAtividadeDto
-    fun toEntityDelete(dto: DeletarAtividadeDto): Atividade
-
-
-    // fun createMapper(descAtividadeDto: CriarAtividadeDto, dataInicio: CriarAtividadeDto):CriarAtividadeDto
-    // fun updateMapper(descAtividadeDto: AtualizarAtividadeDto, dataInicio: AtualizarAtividadeDto):Void
-    // fun deleteMapper(id: DeletarAtividadeDto): DeletarAtividadeDto
+  //  fun toEntityDelete(dto: DeletarAtividadeDto): Atividade
 
 
 }
