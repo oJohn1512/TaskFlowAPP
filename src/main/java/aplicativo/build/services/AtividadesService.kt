@@ -6,10 +6,10 @@ import aplicativo.build.dto.DeletarAtividadeDto
 
 interface AtividadesService {
 
-    fun criarAtividade(descAtividade: CriarAtividadeDto, dataInicio: CriarAtividadeDto): CriarAtividadeDto
+    fun criarAtividade(descAtividadeDto: CriarAtividadeDto): CriarAtividadeDto
 
-    fun deletarAtividade(id: DeletarAtividadeDto): DeletarAtividadeDto
+    fun deletarAtividade(descAtividadeDto: DeletarAtividadeDto): DeletarAtividadeDto
 
-    fun atualizarAtividade(descAtividade: AtualizarAtividadeDto, dataInicio: AtualizarAtividadeDto):Void
+    fun atualizarAtividade(descAtividade: AtualizarAtividadeDto):AtualizarAtividadeDto
 
 }
