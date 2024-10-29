@@ -1,11 +1,18 @@
 package aplicativo.build.model
 
 import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
 import java.time.LocalDate
-import java.util.UUID
 
 @Entity
-class Atividade (val id: UUID, val descAtividade: String, val dataInicio: LocalDate) {
+class Atividade (
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long,
+    var descAtividade: String,
+    var dataInicio: LocalDate) {
 
 
 }

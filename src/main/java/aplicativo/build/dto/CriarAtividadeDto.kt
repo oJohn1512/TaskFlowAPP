@@ -1,12 +1,11 @@
 package aplicativo.build.dto
 
-import jakarta.persistence.Id
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
 import java.time.LocalDate
-import java.util.*
 
-data class CriarAtividadeDto (
-    @Id
-    val id: UUID = UUID.randomUUID(),
-    val descAtividade: String,
-    val dataInicio: LocalDate = LocalDate.now())
+data class CriarAtividadeDto @JsonCreator constructor(
+    @JsonProperty("id") val id: Long,
+    @JsonProperty("descAtividade") val descAtividade: String,
+    @JsonProperty("dataInicio") val dataInicio: LocalDate)
 

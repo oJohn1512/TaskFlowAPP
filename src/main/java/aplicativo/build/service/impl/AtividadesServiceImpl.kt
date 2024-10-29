@@ -21,20 +21,31 @@ class AtividadesServiceImpl: AtividadesService {
     lateinit var repository: AtividadesRepository
 
 
+//    override fun listaAtividades(): MutableList<Atividade> {
+//        return repository.listAll()
+//    }
+
     override fun criarAtividade(descAtividadeDto: CriarAtividadeDto): CriarAtividadeDto{
         val atividadeEntity = mapper.toEntityCreate(descAtividadeDto)
         repository.persist(atividadeEntity)
         return mapper.toDtoCreate(atividadeEntity)
     }
 
-    override fun atualizarAtividade(descAtividade: AtualizarAtividadeDto): AtualizarAtividadeDto{
-
+    override fun atualizarAtividade(attDesc: AtualizarAtividadeDto, attData:AtualizarAtividadeDto): AtualizarAtividadeDto{
+        val atividadeEntity = mapper.toEntityUpdate(attDesc,attData)
+        atividadeEntity.descAtividade = attDesc.descAtividade
+        atividadeEntity.dataInicio = attData.dataInicio
+        repository.persist(atividadeEntity)
+        return mapper.toDtoUpdate(atividadeEntity)
     }
 
-    override fun deletarAtividade(descAtividade: DeletarAtividadeDto): DeletarAtividadeDto{
-
-        return repository.delete()
+    override fun deletarAtividade(descAtividadeDto: DeletarAtividadeDto): DeletarAtividadeDto{
+     //   repository.deleteById(atividade.id)
+       val atividadeEntity = mapper.toEntityDelete(descAtividadeDto)
+        repository.delete(atividadeEntity)
+        return mapper.toDtoDelete(atividadeEntity)
     }
+
 
 
 }

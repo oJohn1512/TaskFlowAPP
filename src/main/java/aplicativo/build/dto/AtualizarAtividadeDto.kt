@@ -2,11 +2,10 @@ package aplicativo.build.dto
 
 import jakarta.persistence.Id
 import java.time.LocalDate
-import java.util.*
 
-data class AtualizarAtividadeDto (
+data class AtualizarAtividadeDto(
     @Id
-    val id: UUID,
+    val id: Long,
     val descAtividade: String,
     val dataInicio: LocalDate)
 {

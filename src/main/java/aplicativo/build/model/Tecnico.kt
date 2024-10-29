@@ -1,9 +1,16 @@
 package aplicativo.build.model
 
 import jakarta.persistence.Entity
-import java.util.UUID
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+
 
 @Entity
-class Tecnico (val id: UUID, val nomeTecnico: String, val setor: String,) {
-    val atividade: MutableList<Atividade> = mutableListOf()
+class Tecnico (
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long,
+    val nomeTecnico: String,
+    val setor: String,) {
 }

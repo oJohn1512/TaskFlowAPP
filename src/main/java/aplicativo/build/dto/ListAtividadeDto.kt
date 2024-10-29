@@ -6,7 +6,7 @@ import java.util.*
 
 data class ListAtividadeDto (
 
-    val id: UUID ,
+    val id: Long ,
     val descAtividade: String,
     val dataInicio: LocalDate)
 {
