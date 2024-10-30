@@ -8,7 +8,7 @@ import aplicativo.build.repository.AtividadesRepository
 import aplicativo.build.services.AtividadesService
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.inject.Inject
-
+import jakarta.transaction.Transactional
 
 
 @ApplicationScoped
@@ -25,6 +25,7 @@ class AtividadesServiceImpl: AtividadesService {
 //        return repository.listAll()
 //    }
 
+    @Transactional
     override fun criarAtividade(descAtividadeDto: CriarAtividadeDto): CriarAtividadeDto{
         val atividadeEntity = mapper.toEntityCreate(descAtividadeDto)
         repository.persist(atividadeEntity)
@@ -39,13 +40,14 @@ class AtividadesServiceImpl: AtividadesService {
         return mapper.toDtoUpdate(atividadeEntity)
     }
 
+    @Transactional
     override fun deletarAtividade(descAtividadeDto: DeletarAtividadeDto): DeletarAtividadeDto{
-     //   repository.deleteById(atividade.id)
        val atividadeEntity = mapper.toEntityDelete(descAtividadeDto)
         repository.delete(atividadeEntity)
         return mapper.toDtoDelete(atividadeEntity)
     }
 
-
+    //VERIFICANDO A RESPEITO DO DELETE SE É FEITO DESSA FORMA
+    // OU UTILIZAR O DELETEBYID
 
 }

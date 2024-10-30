@@ -12,7 +12,6 @@ class Atividade (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
     var descAtividade: String,
-    var dataInicio: LocalDate) {
-
-
+    var dataInicio: LocalDate)
+{
 }
