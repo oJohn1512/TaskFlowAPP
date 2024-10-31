@@ -7,13 +7,7 @@ import aplicativo.build.mapper.AtividadesMapper
 import aplicativo.build.model.Atividade
 import aplicativo.build.services.AtividadesService
 import jakarta.inject.Inject
-import jakarta.ws.rs.Consumes
-import jakarta.ws.rs.DELETE
-import jakarta.ws.rs.GET
-import jakarta.ws.rs.POST
-import jakarta.ws.rs.PUT
-import jakarta.ws.rs.Path
-import jakarta.ws.rs.Produces
+import jakarta.ws.rs.*
 import jakarta.ws.rs.core.MediaType
 import jakarta.ws.rs.core.Response
 import java.time.LocalDate
@@ -40,12 +34,21 @@ class AtividadesResource {
 //        return  Response.ok().entity(attAtividade).build()
 //    }
 
+
+//    @DELETE
+//    @Path("/deletarAtividade")
+//   fun deletarAtividade(atividade: DeletarAtividadeDto): Response{
+//        service.deletarAtividade(atividade)
+//        return Response.ok().entity("Deletado com sucesso").build()
+//    }
+
     @DELETE
-    @Path("/deletarAtividade")
-    fun deletarAtividade(atividade: DeletarAtividadeDto): Response{
-        service.deletarAtividade(atividade)
+    @Path("/deletarAtividade/{id}")
+    fun deletarAtividade(@PathParam("id") id:Long): Response{
+        service.deletarAtividade(id)
         return Response.ok().entity("Deletado com sucesso").build()
     }
+
 
 
 }

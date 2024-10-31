@@ -4,6 +4,7 @@ import aplicativo.build.dto.AtualizarAtividadeDto
 import aplicativo.build.dto.CriarAtividadeDto
 import aplicativo.build.dto.DeletarAtividadeDto
 import aplicativo.build.mapper.AtividadesMapper
+import aplicativo.build.model.Atividade
 import aplicativo.build.repository.AtividadesRepository
 import aplicativo.build.services.AtividadesService
 import jakarta.enterprise.context.ApplicationScoped
@@ -33,6 +34,7 @@ class AtividadesServiceImpl: AtividadesService {
     }
 
     override fun atualizarAtividade(attDesc: AtualizarAtividadeDto, attData:AtualizarAtividadeDto): AtualizarAtividadeDto{
+        if ()
         val atividadeEntity = mapper.toEntityUpdate(attDesc,attData)
         atividadeEntity.descAtividade = attDesc.descAtividade
         atividadeEntity.dataInicio = attData.dataInicio
@@ -40,12 +42,23 @@ class AtividadesServiceImpl: AtividadesService {
         return mapper.toDtoUpdate(atividadeEntity)
     }
 
-    @Transactional
-    override fun deletarAtividade(descAtividadeDto: DeletarAtividadeDto): DeletarAtividadeDto{
-       val atividadeEntity = mapper.toEntityDelete(descAtividadeDto)
-        repository.delete(atividadeEntity)
-        return mapper.toDtoDelete(atividadeEntity)
+    //@Transactional
+    //override fun deletarAtividade(descAtividadeDto: DeletarAtividadeDto): DeletarAtividadeDto{
+        //  val atividadeEntity = mapper.toEntityDelete(descAtividadeDto)
+        // repository.delete(atividadeEntity)
+        //   return mapper.toDtoDelete(atividadeEntity)
+        //}
+
+    override fun deletarAtividade(idPraDeletar: Long) {
+        if(repository.findById(idPraDeletar) != null)
+            repository.deleteById(idPraDeletar)
+        else {
+            println("Atividade não encontrada na base")
+        }
+
     }
+
+
 
     //VERIFICANDO A RESPEITO DO DELETE SE É FEITO DESSA FORMA
     // OU UTILIZAR O DELETEBYID

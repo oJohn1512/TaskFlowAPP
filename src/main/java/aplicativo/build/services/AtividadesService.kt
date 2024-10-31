@@ -11,7 +11,7 @@ interface AtividadesService {
 
     fun criarAtividade(descAtividadeDto: CriarAtividadeDto): CriarAtividadeDto
 
-    fun deletarAtividade(descAtividadeDto: DeletarAtividadeDto): DeletarAtividadeDto
+    fun deletarAtividade(id: Long)
 
     fun atualizarAtividade(attDesc: AtualizarAtividadeDto, attData: AtualizarAtividadeDto):AtualizarAtividadeDto
 
