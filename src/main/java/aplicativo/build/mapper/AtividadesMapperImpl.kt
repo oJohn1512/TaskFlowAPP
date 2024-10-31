@@ -25,7 +25,7 @@ class AtividadesMapperImpl: AtividadesMapper {
         )
     }
 
-    override fun toEntityUpdate(dto: AtualizarAtividadeDto, dtoData: AtualizarAtividadeDto): Atividade {
+    override fun toEntityUpdate(dto: AtualizarAtividadeDto): Atividade {
         return Atividade(id = dto.id, descAtividade = dto.descAtividade, dataInicio = dto.dataInicio)
     }
 

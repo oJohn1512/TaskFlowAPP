@@ -27,12 +27,12 @@ class AtividadesResource {
         return Response.ok().entity("Criado com sucesso!").build()
     }
 
-//    @PUT
-//    @Path("/atualizarAtividade")
-//    fun atualizarAtividade(attAtividade: AtualizarAtividadeDto, attData: AtualizarAtividadeDto): Response{
-//        service.atualizarAtividade(attAtividade, attData)
-//        return  Response.ok().entity(attAtividade).build()
-//    }
+    @PUT
+    @Path("/atualizarAtividade")
+    fun atualizarAtividade(attAtividade: AtualizarAtividadeDto): Response{
+        service.atualizarAtividade(attAtividade)
+        return  Response.ok().entity(attAtividade).build()
+    }
 
 
 //    @DELETE

@@ -33,11 +33,10 @@ class AtividadesServiceImpl: AtividadesService {
         return mapper.toDtoCreate(atividadeEntity)
     }
 
-    override fun atualizarAtividade(attDesc: AtualizarAtividadeDto, attData:AtualizarAtividadeDto): AtualizarAtividadeDto{
-        if ()
-        val atividadeEntity = mapper.toEntityUpdate(attDesc,attData)
-        atividadeEntity.descAtividade = attDesc.descAtividade
-        atividadeEntity.dataInicio = attData.dataInicio
+    override fun atualizarAtividade(attAtividade: AtualizarAtividadeDto): AtualizarAtividadeDto{
+        val atividadeEntity = mapper.toEntityUpdate(attAtividade)
+        atividadeEntity.descAtividade = attAtividade.descAtividade
+        atividadeEntity.dataInicio = attAtividade.dataInicio
         repository.persist(atividadeEntity)
         return mapper.toDtoUpdate(atividadeEntity)
     }

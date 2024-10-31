@@ -15,7 +15,7 @@ interface AtividadesMapper {
     fun toEntityCreate(dto: CriarAtividadeDto):Atividade
 
     fun toDtoUpdate(entity: Atividade):AtualizarAtividadeDto
-    fun toEntityUpdate(dto: AtualizarAtividadeDto, dtoData: AtualizarAtividadeDto):Atividade
+    fun toEntityUpdate(dto: AtualizarAtividadeDto):Atividade
 
     fun toDtoDelete(entity: Atividade):DeletarAtividadeDto
     fun toEntityDelete(dto: DeletarAtividadeDto): Atividade
