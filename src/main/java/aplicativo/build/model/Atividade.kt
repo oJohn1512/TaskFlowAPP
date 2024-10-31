@@ -14,4 +14,5 @@ class Atividade (
     var descAtividade: String,
     var dataInicio: LocalDate)
 {
+    constructor() :this (0, "", LocalDate.now())
 }

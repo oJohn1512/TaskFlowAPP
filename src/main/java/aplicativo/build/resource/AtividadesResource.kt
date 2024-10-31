@@ -20,6 +20,13 @@ class AtividadesResource {
     @Inject
     lateinit var service: AtividadesService
 
+    @GET
+    @Path("/listaAtividades")
+    fun listarAtividades(): Response{
+        var lista = service.listaAtividades()
+        return Response.ok().entity(arrayOf(lista)).build()
+    }
+
     @POST
     @Path("/criarAtividade")
     fun criarAtividade(atividade: CriarAtividadeDto): Response{
@@ -28,19 +35,11 @@ class AtividadesResource {
     }
 
     @PUT
-    @Path("/atualizarAtividade")
-    fun atualizarAtividade(attAtividade: AtualizarAtividadeDto): Response{
-        service.atualizarAtividade(attAtividade)
-        return  Response.ok().entity(attAtividade).build()
+    @Path("/atualizarAtividade/{id}")
+    fun atualizarAtividade(@PathParam("id") id: Long, attAtividade: AtualizarAtividadeDto): Response{
+        service.atualizarAtividade(id, attAtividade)
+        return Response.ok().entity(attAtividade).build()
     }
-
-
-//    @DELETE
-//    @Path("/deletarAtividade")
-//   fun deletarAtividade(atividade: DeletarAtividadeDto): Response{
-//        service.deletarAtividade(atividade)
-//        return Response.ok().entity("Deletado com sucesso").build()
-//    }
 
     @DELETE
     @Path("/deletarAtividade/{id}")

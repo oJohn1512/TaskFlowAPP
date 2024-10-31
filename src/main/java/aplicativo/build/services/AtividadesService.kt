@@ -7,12 +7,12 @@ import aplicativo.build.model.Atividade
 
 interface AtividadesService {
 
-//    fun listaAtividades(): MutableList<Atividade>
+   fun listaAtividades(): List<Atividade>
 
     fun criarAtividade(descAtividadeDto: CriarAtividadeDto): CriarAtividadeDto
 
     fun deletarAtividade(id: Long)
 
-    fun atualizarAtividade(attAtividade: AtualizarAtividadeDto):AtualizarAtividadeDto
+    fun atualizarAtividade(idPraAtualizar: Long, attAtividade: AtualizarAtividadeDto):AtualizarAtividadeDto
 
 }
