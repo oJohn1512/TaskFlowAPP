@@ -2,15 +2,11 @@ package aplicativo.build.resource
 
 import aplicativo.build.dto.AtualizarAtividadeDto
 import aplicativo.build.dto.CriarAtividadeDto
-import aplicativo.build.dto.DeletarAtividadeDto
-import aplicativo.build.mapper.AtividadesMapper
-import aplicativo.build.model.Atividade
-import aplicativo.build.services.AtividadesService
+import aplicativo.build.service.AtividadesService
 import jakarta.inject.Inject
 import jakarta.ws.rs.*
 import jakarta.ws.rs.core.MediaType
 import jakarta.ws.rs.core.Response
-import java.time.LocalDate
 
 @Path("/atividades")
 @Produces(MediaType.APPLICATION_JSON)

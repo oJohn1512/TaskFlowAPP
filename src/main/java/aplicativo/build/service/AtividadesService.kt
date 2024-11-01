@@ -1,8 +1,7 @@
-package aplicativo.build.services
+package aplicativo.build.service
 
 import aplicativo.build.dto.AtualizarAtividadeDto
 import aplicativo.build.dto.CriarAtividadeDto
-import aplicativo.build.dto.DeletarAtividadeDto
 import aplicativo.build.model.Atividade
 
 interface AtividadesService {

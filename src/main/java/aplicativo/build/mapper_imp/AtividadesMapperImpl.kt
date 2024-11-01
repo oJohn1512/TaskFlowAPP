@@ -1,8 +1,9 @@
-package aplicativo.build.mapper
+package aplicativo.build.mapper_imp
 
 import aplicativo.build.dto.AtualizarAtividadeDto
 import aplicativo.build.dto.CriarAtividadeDto
 import aplicativo.build.dto.DeletarAtividadeDto
+import aplicativo.build.mapper.AtividadesMapper
 import aplicativo.build.model.Atividade
 import jakarta.enterprise.context.ApplicationScoped
 

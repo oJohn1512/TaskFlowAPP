@@ -1,12 +1,11 @@
-package aplicativo.build.service.impl
+package aplicativo.build.service_impl
 
 import aplicativo.build.dto.AtualizarAtividadeDto
 import aplicativo.build.dto.CriarAtividadeDto
-import aplicativo.build.exception.APIException
 import aplicativo.build.mapper.AtividadesMapper
 import aplicativo.build.model.Atividade
 import aplicativo.build.repository.AtividadesRepository
-import aplicativo.build.services.AtividadesService
+import aplicativo.build.service.AtividadesService
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.inject.Inject
 import jakarta.transaction.Transactional
