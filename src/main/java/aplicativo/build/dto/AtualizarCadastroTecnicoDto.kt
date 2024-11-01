@@ -1,4 +1,9 @@
 package aplicativo.build.dto
 
-class AtualizarCadastroTecnicoDto {
-}
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
+
+class AtualizarCadastroTecnicoDto  @JsonCreator constructor (
+    @JsonProperty("id") val id: Long,
+    @JsonProperty("nomeTecnico") val nomeTecnico: String,
+    @JsonProperty("setor") val setor: String)

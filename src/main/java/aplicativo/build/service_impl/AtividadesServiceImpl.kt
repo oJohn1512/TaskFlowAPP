@@ -2,7 +2,7 @@ package aplicativo.build.service_impl
 
 import aplicativo.build.dto.AtualizarAtividadeDto
 import aplicativo.build.dto.CriarAtividadeDto
-import aplicativo.build.mapper.AtividadesMapper
+import aplicativo.build.mapper.AtividadesMapperImpl
 import aplicativo.build.model.Atividade
 import aplicativo.build.repository.AtividadesRepository
 import aplicativo.build.service.AtividadesService
@@ -16,7 +16,7 @@ import jakarta.ws.rs.NotFoundException
 class AtividadesServiceImpl: AtividadesService {
 
     @Inject
-    lateinit var mapper: AtividadesMapper
+    lateinit var mapper: AtividadesMapperImpl
 
     @Inject
     lateinit var repository: AtividadesRepository
@@ -38,17 +38,15 @@ class AtividadesServiceImpl: AtividadesService {
         if (repository.findById(idPraAtualizar) == null) {
             throw NotFoundException("Atividade não encontrada")
         }
-        try {
             val atividadeExistente = repository.findById(idPraAtualizar)
             atividadeExistente.descAtividade = attAtividade.descAtividade
             atividadeExistente.dataInicio = attAtividade.dataInicio
             repository.persist(atividadeExistente)
             return mapper.toDtoUpdate(atividadeExistente)
-        } catch (e: Exception){
-            e.printStackTrace()
-            println("Erro na hora de atualizar Atividade")
-        }
-
+//        } catch (e: Exception){
+//            e.printStackTrace()
+//            println("Erro na hora de atualizar Atividade")
+//        }
     }
 
 

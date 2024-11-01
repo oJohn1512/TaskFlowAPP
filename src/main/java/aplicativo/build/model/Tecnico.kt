@@ -11,6 +11,9 @@ class Tecnico (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
-    val nomeTecnico: String,
-    val setor: String,) {
+    var nomeTecnico: String,
+    var setor: String,) {
+
+    constructor() :this (0, "", "")
 }
+

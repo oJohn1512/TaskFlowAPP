@@ -9,6 +9,3 @@ data class AtualizarAtividadeDto @JsonCreator constructor(
     @JsonProperty ("id") val id: Long,
     @JsonProperty ("descAtividade") val descAtividade: String,
     @JsonProperty ("dataInicio") val dataInicio: LocalDate)
-{
-
-}
