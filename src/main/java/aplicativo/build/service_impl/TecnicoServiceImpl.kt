@@ -9,6 +9,7 @@ import aplicativo.build.service.TecnicoService
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.inject.Inject
 import jakarta.transaction.Transactional
+import jakarta.ws.rs.NotFoundException
 
 
 @ApplicationScoped
@@ -20,8 +21,14 @@ class TecnicoServiceImpl: TecnicoService {
     @Inject
     lateinit var mapper: TecnicoMapperImpl
 
-    override fun listTecnicos(): MutableList<Tecnico> {
-        return repository.listAll()
+    override fun listTecnicos(): List<Tecnico> {
+        return try {
+            repository.listAll()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            println("Erro ao listar Tecnicos")
+            emptyList()
+        }
     }
 
     @Transactional
@@ -33,8 +40,15 @@ class TecnicoServiceImpl: TecnicoService {
 
     @Transactional
     override fun deletarTecnico(id: Long) {
-        if (repository.findById(id) != null) {
+        try {
+            if (repository.findById(id) != null) {
             repository.deleteById(id)
+            } else {
+            throw NotFoundException("Tenico não encontrada")
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            println("Erro ao deletar tecnico")
         }
     }
 

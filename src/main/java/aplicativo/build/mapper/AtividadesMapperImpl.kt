@@ -27,11 +27,3 @@ class AtividadesMapperImpl {
 
 
 
-/*
-data class PessoaEntity(val id:Long, val name: String, val age: Int)
-data class PessoaDto(val name: String, val age: Int)
-fun PessoaEntity.toDto() =  PessoaDto(name,age)
-
-val entity = PessoaEntity(0,"MNiguel",21)
-val dto = entity.toDto()
-*/

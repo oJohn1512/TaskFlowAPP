@@ -6,7 +6,7 @@ import aplicativo.build.model.Tecnico
 
 interface TecnicoService {
 
-    fun listTecnicos():MutableList<Tecnico>
+    fun listTecnicos(): List<Tecnico>
 
     fun criaTecnico(novoTecnico: CadastrarTecnicoDto):CadastrarTecnicoDto
 

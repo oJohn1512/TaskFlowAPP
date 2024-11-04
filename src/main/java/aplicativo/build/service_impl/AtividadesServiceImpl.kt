@@ -23,12 +23,18 @@ class AtividadesServiceImpl: AtividadesService {
 
 
     override fun listaAtividades(): List<Atividade> {
-        return repository.listAll()
+        return try {
+            repository.listAll()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            println("Erro ao listar atividades")
+            emptyList()
+        }
     }
 
     @Transactional
-    override fun criarAtividade(descAtividadeDto: CriarAtividadeDto): CriarAtividadeDto{
-        val atividadeEntity = mapper.toEntityCreate(descAtividadeDto)
+    override fun criarAtividade(dadosAtividade: CriarAtividadeDto): CriarAtividadeDto{
+        val atividadeEntity = mapper.toEntityCreate(dadosAtividade)
         repository.persist(atividadeEntity)
         return mapper.toDtoCreate(atividadeEntity)
     }
@@ -52,11 +58,15 @@ class AtividadesServiceImpl: AtividadesService {
 
     @Transactional
     override fun deletarAtividade(idPraDeletar: Long) {
-        if(repository.findById(idPraDeletar) != null)
-            repository.deleteById(idPraDeletar)
-        else {
-            println("Atividade não encontrada na base")
+        try {
+            if (repository.findById(idPraDeletar) != null) {
+                repository.deleteById(idPraDeletar)
+            } else {
+                throw NotFoundException("Atividade não encontrada")
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            println("Erro ao deletar atividade")
         }
     }
-
 }
