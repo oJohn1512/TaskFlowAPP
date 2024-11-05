@@ -26,8 +26,13 @@ class AtividadesResource {
     @POST
     @Path("/criarAtividade")
     fun criarAtividade(atividade: CriarAtividadeDto): Response{
+        return try {
         service.criarAtividade(atividade)
         return Response.ok().entity("Criado com sucesso!").build()
+        } catch (e: IllegalArgumentException) {
+            e.printStackTrace()
+            Response.status(Response.Status.BAD_REQUEST).entity("Dados inválidos: ${e.message}").build()
+        }
     }
 
     @PUT
@@ -44,6 +49,11 @@ class AtividadesResource {
         return Response.ok().entity("Deletado com sucesso").build()
     }
 
-
+    @PUT
+    @Path("/atribuiratividade/{idAtividade}/aoTecnico/{idTecnico}")
+    fun atribuirAtividade(@PathParam("idAtividade") idAtividade: Long, @PathParam("idTecnico") idTecnico: Long): Response {
+        service.atribuirAtividadeAoTecnico(idAtividade, idTecnico)
+        return Response.ok().entity("Atribuido com sucesso!").build()
+    }
 
 }

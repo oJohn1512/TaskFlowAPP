@@ -14,4 +14,5 @@ interface AtividadesService {
 
     fun atualizarAtividade(idPraAtualizar: Long, attAtividade: AtualizarAtividadeDto):AtualizarAtividadeDto
 
+    fun atribuirAtividadeAoTecnico(idAtividade:Long, idTecnico: Long)
 }

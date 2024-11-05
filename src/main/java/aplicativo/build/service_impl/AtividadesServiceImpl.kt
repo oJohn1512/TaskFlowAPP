@@ -4,7 +4,9 @@ import aplicativo.build.dto.AtualizarAtividadeDto
 import aplicativo.build.dto.CriarAtividadeDto
 import aplicativo.build.mapper.AtividadesMapperImpl
 import aplicativo.build.model.Atividade
+import aplicativo.build.model.Tecnico
 import aplicativo.build.repository.AtividadesRepository
+import aplicativo.build.repository.TecnicoRepository
 import aplicativo.build.service.AtividadesService
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.inject.Inject
@@ -17,14 +19,15 @@ class AtividadesServiceImpl: AtividadesService {
 
     @Inject
     lateinit var mapper: AtividadesMapperImpl
-
     @Inject
-    lateinit var repository: AtividadesRepository
+    lateinit var repositoryAtividade: AtividadesRepository
+    @Inject
+    lateinit var repositoryTecnico: TecnicoRepository
 
 
     override fun listaAtividades(): List<Atividade> {
         return try {
-            repository.listAll()
+            repositoryAtividade.listAll()
         } catch (e: Exception) {
             e.printStackTrace()
             println("Erro ao listar atividades")
@@ -34,33 +37,39 @@ class AtividadesServiceImpl: AtividadesService {
 
     @Transactional
     override fun criarAtividade(dadosAtividade: CriarAtividadeDto): CriarAtividadeDto{
+        try {
         val atividadeEntity = mapper.toEntityCreate(dadosAtividade)
-        repository.persist(atividadeEntity)
+        repositoryAtividade.persist(atividadeEntity)
         return mapper.toDtoCreate(atividadeEntity)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            println("Atividade não encontrada")
+        }
+        return dadosAtividade
     }
 
     @Transactional
     override fun atualizarAtividade(idPraAtualizar: Long, attAtividade: AtualizarAtividadeDto): AtualizarAtividadeDto {
-        if (repository.findById(idPraAtualizar) == null) {
+        if (repositoryAtividade.findById(idPraAtualizar) == null) {
             throw NotFoundException("Atividade não encontrada")
         }
-            val atividadeExistente = repository.findById(idPraAtualizar)
+            try {val atividadeExistente = repositoryAtividade.findById(idPraAtualizar)
             atividadeExistente.descAtividade = attAtividade.descAtividade
             atividadeExistente.dataInicio = attAtividade.dataInicio
-            repository.persist(atividadeExistente)
+            repositoryAtividade.persist(atividadeExistente)
             return mapper.toDtoUpdate(atividadeExistente)
-//        } catch (e: Exception){
-//            e.printStackTrace()
-//            println("Erro na hora de atualizar Atividade")
-//        }
+            } catch (e: Exception){
+            e.printStackTrace()
+            println("Erro na hora de atualizar Atividade")
+            }
+        return attAtividade
     }
-
 
     @Transactional
     override fun deletarAtividade(idPraDeletar: Long) {
         try {
-            if (repository.findById(idPraDeletar) != null) {
-                repository.deleteById(idPraDeletar)
+            if (repositoryAtividade.findById(idPraDeletar) != null) {
+                repositoryAtividade.deleteById(idPraDeletar)
             } else {
                 throw NotFoundException("Atividade não encontrada")
             }
@@ -68,5 +77,13 @@ class AtividadesServiceImpl: AtividadesService {
             e.printStackTrace()
             println("Erro ao deletar atividade")
         }
+    }
+
+    @Transactional
+    override fun atribuirAtividadeAoTecnico(idAtividade:Long, idTecnico: Long){
+        val atividade =  repositoryAtividade.findById(idAtividade)
+        val tecnico =  repositoryTecnico.findById(idTecnico)
+        atividade.tecnico = tecnico
+        tecnico.atividadesTenico.add(atividade)
     }
 }

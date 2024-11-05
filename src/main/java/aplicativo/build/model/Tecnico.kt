@@ -12,7 +12,9 @@ class Tecnico (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
     var nomeTecnico: String,
-    var setor: String,) {
+    var setor: String,)
+{
+    val atividadesTenico: MutableList<Atividade> = mutableListOf()
 
     constructor() :this (0, "", "")
 }

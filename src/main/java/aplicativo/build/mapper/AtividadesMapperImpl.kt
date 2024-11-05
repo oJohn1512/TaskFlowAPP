@@ -23,6 +23,7 @@ class AtividadesMapperImpl {
             dataInicio = entity.dataInicio
         )
     }
+
 }
 
 
